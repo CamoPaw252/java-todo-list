@@ -81,6 +81,7 @@ public class Task {
      * 
      * @return A string representation of the task
      */
+    @Override // Override toString() from the Java Object
     public String toString() {
         return "Task: " + this.text + " - Complete: " + this.complete;
     }
