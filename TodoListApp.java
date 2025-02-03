@@ -26,41 +26,26 @@ public class TodoListApp {
                 String input = scanner.nextLine().toLowerCase(); // format input
 
                 // exit condition
-                if (input.equals("quit")) {
-                    running = false;
-                }
-                // help command
-                else if (input.equals("help")) {
-                    System.out.println("Available commands: \nquit: quit the application \nhelp: list the avaliable commands \nadd: Create a new task \ndel: Remove a task \nmark: Check off a task \nlist: List all tasks and their contents");
-                }
-                // add a new task command
-                else if (input.equals("add")) {
-                    System.out.println("Enter the task description: ");
-                    String task = scanner.nextLine().trim();
-                    todoList.addTask(new Task(task));
-                }
-                // remove a task command
-                else if (input.equals("del")) {
-                    System.out.println("Enter the task description: ");
-                    String task = scanner.nextLine().trim();
-                    todoList.removeTask(todoList.findTask(task)); // search for task and remove it
-                }
-                // mark a task as complete command
-                else if (input.equals("mark")) {
-                    System.out.println("Enter the task description: ");
-                    String taskDescription = scanner.nextLine().trim();
-                    Task task = todoList.findTask(taskDescription); // search for task
-                    if (task != null) {
-                        todoList.completeTask(task); // if task is found, mark it as complete
+                switch (input) {
+                    case "quit" -> running = false;
+                    case "help" -> System.out.println("Available commands: \nquit: quit the application \nhelp: list the avaliable commands \nadd: Create a new task \ndel: Remove a task \nmark: Check off a task \nlist: List all tasks and their contents");
+                    case "add" -> {
+                        System.out.println("Enter the task description: ");
+                        String task = scanner.nextLine().trim();
+                        todoList.addTask(new Task(task));
                     }
-                }
-                // list all tasks command
-                else if (input.equals("list")) {
-                    todoList.printTasks();
-                }
-                // invalid command
-                else {
-                    System.out.println("Invalid command. Type 'help' for a list of commands.");
+                    case "del" -> {
+                        System.out.println("Enter the task description to delete: ");
+                        String taskDes = scanner.nextLine();
+                        todoList.removeTask(todoList.findTask(taskDes));
+                    }
+                    case "mark" -> {
+                        System.out.println("Enter the task description to mark as complete: ");
+                        String taskDes = scanner.nextLine();
+                        todoList.completeTask(todoList.findTask(taskDes));
+                    }
+                    case "list" -> todoList.printTasks();
+                    default -> System.out.println("Invalid command. Type 'help' for available commands.");
                 }
             }
         } // scanner is automatically closed here
