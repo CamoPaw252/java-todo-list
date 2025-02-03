@@ -28,18 +28,21 @@ public class TodoListApp {
             }
             else if (input.equals("add")) {
                 System.out.println("Enter the task description: ");
-                String task = scanner.nextLine();
+                String task = scanner.nextLine().trim();
                 todoList.addTask(new Task(task));
             }
             else if (input.equals("del")) {
                 System.out.println("Enter the task description: ");
-                String task = scanner.nextLine();
-                todoList.removeTask(new Task(task));
+                String task = scanner.nextLine().trim();
+                todoList.removeTask(todoList.findTask(task));
             }
             else if (input.equals("mark")) {
                 System.out.println("Enter the task description: ");
-                String task = scanner.nextLine();
-                todoList.completeTask(new Task(task));
+                String taskDescription = scanner.nextLine().trim();
+                Task task = todoList.findTask(taskDescription);
+                if (task != null) {
+                    todoList.completeTask(task);
+                }
             }
             else if (input.equals("list")) {
                 todoList.printTasks();

@@ -64,4 +64,28 @@ class TodoList {
     public void completeTask(Task task) {
         task.setComplete(true);
     }
+
+    /**
+     * Method that returns a copy of the tasks list for iteration
+     * 
+     * @return A list of tasks in the TodoList
+     */
+    public List<Task> getTasks() {
+        return new ArrayList<>(this.tasks);
+    }
+
+    /**
+     * Method that finds a task by its description
+     * 
+     * @param taskDescription The description of the task to find
+     * @return The task with the matching description, or null if not found
+     */
+    public Task findTask(String taskDescription) {
+        for (Task task : this.tasks) {
+            if (task.getText().equals(taskDescription)) {
+                return task;
+            }
+        }
+        return null;
+    }
 }
