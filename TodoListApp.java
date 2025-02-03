@@ -47,6 +47,9 @@ public class TodoListApp {
             else if (input.equals("list")) {
                 todoList.printTasks();
             }
+            else {
+                System.out.println("Invalid command. Type 'help' for a list of commands.");
+            }
         }
     }
 }
