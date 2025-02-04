@@ -75,6 +75,21 @@ class TodoList {
     }
 
     /**
+     * Save tasks to a file
+     * 
+     * @param filename The name of the file to save tasks to
+     * @throws IOException If there is an error writing to the file
+     */
+    public void saveTasksToFile(String filename) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (Task task : tasks) {
+                writer.write(task.getText() + "," + task.isComplete());
+                writer.newLine();
+            }
+        }
+    }
+
+    /**
      * Method that finds a task by its description
      * 
      * @param taskDescription The description of the task to find
